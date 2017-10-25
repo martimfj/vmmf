@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<?grc format='1' created='3.7.11'?>
+<?grc format='1' created='3.7.9'?>
 <flow_graph>
   <timestamp>Fri Oct 23 18:50:34 2015</timestamp>
   <block>
@@ -90,10 +90,6 @@
     <param>
       <key>const_points</key>
       <value>[-1, 1]</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>bpsk</value>
     </param>
     <param>
       <key>dims</key>
@@ -500,7 +496,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1008, 172)</value>
+      <value>(912, 348)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -547,11 +543,11 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(24, 476)</value>
+      <value>(264, 468)</value>
     </param>
     <param>
       <key>_rotation</key>
-      <value>0</value>
+      <value>180</value>
     </param>
     <param>
       <key>id</key>
@@ -853,7 +849,7 @@
     </param>
     <param>
       <key>file</key>
-      <value>/home/corsi/Dropbox/Insper/4s-CamadaFisicaDaComputacao/2-Materiais/gnuradio/QPSK/Drummond-residos.txt</value>
+      <value>/home/borg/vmmf/Exemplo/Drummond-residos.txt</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1155,7 +1151,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(840, 568)</value>
+      <value>(840, 569)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1435,10 +1431,6 @@
     <param>
       <key>autoscale</key>
       <value>False</value>
-    </param>
-    <param>
-      <key>axislabels</key>
-      <value>True</value>
     </param>
     <param>
       <key>alias</key>
@@ -1784,10 +1776,6 @@
       <value>False</value>
     </param>
     <param>
-      <key>axislabels</key>
-      <value>True</value>
-    </param>
-    <param>
       <key>alias</key>
       <value></value>
     </param>
@@ -1813,7 +1801,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1064, 292)</value>
+      <value>(1112, 390)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -2147,10 +2135,6 @@
       <value>False</value>
     </param>
     <param>
-      <key>axislabels</key>
-      <value>True</value>
-    </param>
-    <param>
       <key>alias</key>
       <value></value>
     </param>
@@ -2176,7 +2160,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(256, 380)</value>
+      <value>(48, 390)</value>
     </param>
     <param>
       <key>gui_hint</key>
