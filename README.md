@@ -1,6 +1,5 @@
 ﻿# Modulação e Demodulação BPSK
 ## Chat
-​
 ### O que é BPSK?
 BPSK (deslocamento de fase binário) é um tipo de modulação digital em que a fase da portadora varia entre 0 e 1 e permanece constante entre os intervalos, sem alterar a amplitude e a frequência. Fazendo isso, ela consegue identificar os símbolos através da mudança da fase, normalmente um seno de estado 0 ou 180°.
 
