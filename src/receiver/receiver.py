@@ -15,7 +15,9 @@ class Receiver(QtGui.QMainWindow, receiver_ui.Ui_MainWindow):
         self.connected = False
 
         self.button_connect.clicked.connect(lambda: self.socket_init())
+        self.checkStatus()
 
+    def checkStatus(self):
         if self.connected == False:
             self.input_port.setEnabled(True)
             self.button_connect.setText("Connect")
@@ -24,7 +26,6 @@ class Receiver(QtGui.QMainWindow, receiver_ui.Ui_MainWindow):
             self.input_port.setEnabled(False)
             self.button_connect.setText("Disconnect")
             self.console("STATUS: Connected")
-            self.getMessage()
 
     ##################################################
         # Functions
@@ -38,13 +39,13 @@ class Receiver(QtGui.QMainWindow, receiver_ui.Ui_MainWindow):
     def cleanConsole(self):
         self.display_console.clear()
 
-    def message(self, text):
+    def chat(self, text):
         item = QtGui.QListWidgetItem()
         item.setText(text)
         item.setFlags(QtCore.Qt.NoItemFlags)
         self.display_message.addItem(item)
         
-    def cleanMessage(self):
+    def cleanChat(self):
         self.display_message.clear()
 
     def socket_init(self):
@@ -53,32 +54,33 @@ class Receiver(QtGui.QMainWindow, receiver_ui.Ui_MainWindow):
             self.connected = False
         else:
             self.console("Initializing socket TCP/IP")
-            self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            self.server_address = ('localhost', self.port)
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            server_address = ('localhost', self.port)
             self.console("Port {}".format(self.port))
-            self.sock.bind(self.server_address)
+            sock.bind(server_address)
 
             # Listen for incoming connections
-            self.sock.listen(1)
+            sock.listen(1)
+
             while True:
                 self.console("Waiting for a connection...")
-                self.connection, self.client_address = self.sock.accept()
-                self.console("Connection from {}".format(self.client_address))
-                if(self.connection.accept):
-                    break
-            self.connected = True
-
+                self.connection, self.client_address = sock.accept()
+                self.console("Connection from {}".format(client_address))
+                self.connected = True
+    
     def getMessage(self):
-        while True:
-            data = self.connection.recv(32)
-            message = data.decode("utf-8")
-            print("{}".format(message))
-            self.message(message)
+        try:
+            print(" connection from {}".format(client_address))
 
-            if(len(data) <= 0):
-                break
-        self.sock.close()
-        self.connected = False
+            # Receive the data in small chunks and retransmit it
+            while True:
+                data = self.connection.recv(16)
+                print("{}".format(data))
+                if(len(data) <= 0):
+                    break
+        except:
+            print('Erro')
+            self.getMessage()
 
 if __name__ == "__main__":
     app = QtGui.QApplication(sys.argv)
