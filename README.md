@@ -13,27 +13,35 @@ A frequencia utilizada foi de 2200 Hz, pois através de testes empíricos determ
 ## GNURadio (Gráficos com explicação)
 ### Transmissor
 Sinal não codificado no tempo
+
 ![ncodificadot](img/ncodt.png)
 
 Sinal não codificado em frequência
+
 ![ncodificadof](img/ncodf.png)
 
 Sinal codificado no tempo
+
 ![codificadot](img/codt.png)
 
 Sinal codificado em frequência
+
 ![codificadof](img/codf.png)
 
 Sinal modulado no tempo
+
 ![moduladot](img/modt.png)
 
 Sinal modulado em frequência
+
 ![moduladof](img/modf.png)
 
 Diagrama de constelação
+
 ![constelacao](img/const.png)
 
 Sobre o gráfico resultante
+
 ...
 
 ### Receptor
