@@ -18,6 +18,7 @@ class Transmitter(QtGui.QMainWindow, transmitter_ui.Ui_MainWindow):
         self.button_connect.clicked.connect(lambda: self.socket_init())
         self.button_send.clicked.connect(lambda: self.sendMessage())
 
+    def checkStatus(self):
         if self.connected == False:
             self.input_port.setEnabled(True)
             self.button_connect.setText("Connect")
@@ -62,6 +63,7 @@ class Transmitter(QtGui.QMainWindow, transmitter_ui.Ui_MainWindow):
             self.console("Connecting to {} on port {}".format(*self.server_address))
             self.sock.connect(self.server_address)
             self.connected = True
+            self.checkStatus()
 
     def sendMessage(self):
         if self.connected == False:
@@ -69,8 +71,9 @@ class Transmitter(QtGui.QMainWindow, transmitter_ui.Ui_MainWindow):
         else:
             self.message = self.input_message.text()
             self.chat(self.message)
-            data = str.encode(self.message)
-
+            x = str(self.message)
+            data = x.encode()
+            self.sock.send(data)
             self.console("Sending message encoded as {}".format(data))
             #self.sock.sendall(data)
             self.input_message.setText("")
