@@ -12,7 +12,7 @@ class Transmitter(QtGui.QMainWindow, transmitter_ui.Ui_MainWindow):
         # Variables
         ##################################################
         self.port = int(self.input_port.text())
-        self.connected = True
+        self.connected = False
         self.message = None
 
         self.button_connect.clicked.connect(lambda: self.socket_init())
