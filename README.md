@@ -20,23 +20,37 @@ Sinal não codificado em frequência (será atualizado)
 ![2](img/ncodf.png)
 
 Sinal codificado no tempo
+
 ![3](img/codificado_temp.png)
+
 O gráfico apresenta valores de 0 e 1, que representao os valores binarios.
 
+
 Sinal codificado em frequência
+
 ![4](img/codificado_freq.png)
+
 O gráfico apresenta o sinal codificado, que representa os valores binarios.
 
+
 Sinal modulado no tempo
+
 ![5](img/modulado_temp.png)
+
 O gráfico apresenta o sinal codificado modulado em função do tempo para uma determinada portadora
 
+
 Sinal modulado em frequência
+
 ![6](img/modulado_freq.png)
+
 O gráfico apresenta o sinal codificado modulado em função da frequência para uma determinada portadora.
 
+
 Diagrama de constelação
+
 ![7](img/dia_const.png)
+
 O diagrama de constelação é a representação da modulação deste sinal. Temos um diagrama elíptico disperso com uma região central um pouco mais focada.
 
 ### Receptor
