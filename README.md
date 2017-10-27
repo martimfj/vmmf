@@ -39,14 +39,12 @@ Diagrama de constelação
 
 ![constelacao](img/const.png)
 
-Sobre o gráfico resultante
-
-...
 
 ### Receptor
-- Exibir o sinal de áudio recebido no tempo e em frequência
-- Exibir o sinal de áudio demodulado no tempo e em frequência
-- Exibir o diagrama de constelação.
+![1](img/1.png)
+![2](img/2.png)
+![3](img/3.png)
+![4](img/4.png)
 
 #### Itens extras
 - Fazer uma transmissão fullduplex (permitir os dois computadores enviar mensagens simultaneamente)
