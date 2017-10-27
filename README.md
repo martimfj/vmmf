@@ -11,45 +11,36 @@ A frequencia utilizada foi de 2200 Hz, pois através de testes empíricos determ
 
 ## GNURadio (Gráficos com explicação)
 ### Transmissor
-Sinal não codificado no tempo
+Sinal não codificado no tempo (será atualizado)
 
-![ncodificadot](img/ncodt.png)
+![1](img/ncodt.png)
 
-Sinal não codificado em frequência
+Sinal não codificado em frequência (será atualizado)
 
-![ncodificadof](img/ncodf.png)
+![2](img/ncodf.png)
 
 Sinal codificado no tempo
-
-![codificadot](img/codt.png)
+![3](img/codificado_temp.png)
+O gráfico apresenta valores de 0 e 1, que representao os valores binarios.
 
 Sinal codificado em frequência
-
-![codificadof](img/codf.png)
+![4](img/codificado_freq.png)
+O gráfico apresenta o sinal codificado, que representa os valores binarios.
 
 Sinal modulado no tempo
-
-![moduladot](img/modt.png)
+![5](img/modulado_temp.png)
+O gráfico apresenta o sinal codificado modulado em função do tempo para uma determinada portadora
 
 Sinal modulado em frequência
-
-![moduladof](img/modf.png)
+![6](img/modulado_freq.png)
+O gráfico apresenta o sinal codificado modulado em função da frequência para uma determinada portadora.
 
 Diagrama de constelação
-
-![constelacao](img/const.png)
-
+![7](img/dia_const.png)
+O diagrama de constelação é a representação da modulação deste sinal. Temos um diagrama elíptico disperso com uma região central um pouco mais focada.
 
 ### Receptor
 ![1](img/1.png)
 ![2](img/2.png)
 ![3](img/3.png)
 ![4](img/4.png)
-
-#### Itens extras
-- Fazer uma transmissão fullduplex (permitir os dois computadores enviar mensagens simultaneamente)
-- Implementar uma transmissão com mais de um símbolo (QPSK)
-- Implementar algum tipo de correção de erro na mensagem enviada (CRC, ACK/NACK/ Paridade...)
-
-#### Validação
-Em sala de aula, abrir as duas aplicações em computadores distintos e transmitir uma frase entre eles via o pipeline desenvolvido anteriormente.
