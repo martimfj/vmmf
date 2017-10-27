@@ -7,7 +7,7 @@ BPSK (deslocamento de fase binário) é um tipo de modulação digital em que a 
 Utilizamos quatro arquivos, dois em python (links) e dois do GNURadio, sendo um de cada tipo representante ou do transmissor da mensagem, ou do receptor. No transmissor, a interface permite que se escreva uma mensagem, como em um chat comum, que será então modulada, e enviada via o socket que foi configurado no arquivo, para que então o receptor estabeleça uma comunicação com o ele e receba os dados via socket, demodulando e exibindo na interface desenvolvida.
 
 ### Frequencia de transmissão utilizada e banda que o sinal ocupa
-A frequencia utilizada foi de 2200 Hz, pois através de testes empíricos determinamos que era um valor adequado para ambos os computadores. O sinal ocupa uma banda de...
+A frequencia utilizada foi de 2200 Hz, pois através de testes empíricos determinamos que era um valor adequado para ambos os computadores. O sinal ocupa uma banda com o dobro dessa frequência.
 
 ## GNURadio (Gráficos com explicação)
 ### Transmissor
