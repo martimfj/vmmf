@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Camada Física da Computação
 # Exemplo socket server 
 ## https://pymotw.com/2/socket/tcp.html
@@ -24,6 +25,8 @@ def main():
         # Wait for a connection
         print("waiting for a connection")
         connection, client_address = sock.accept()
+        buffer = []
+        string = ""
 
         try:
             print(" connection from {}".format(client_address))
@@ -32,10 +35,12 @@ def main():
             while True:
                 data = connection.recv(32)
                 data2 = data.decode("utf-8") 
-                print("{}".format(data2))
+                buffer.append(data2)
+                string += data2
+                print(string)
+
                 if(len(data) <= 0):
                     break
-
         finally:
             # Clean up the connection
             connection.close()
