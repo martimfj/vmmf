@@ -10,7 +10,6 @@ void sw_uart_setup(due_sw_uart *uart, int rx, int tx, int stopbits, int databits
   pinMode(rx, INPUT);
   pinMode(tx, OUTPUT);
   digitalWrite(tx, HIGH);
-  digitalRead(rx, HIGH);
 }
 
 void sw_uart_write_data(due_sw_uart *uart, char* bufferData, int writeN) {
@@ -48,32 +47,37 @@ int sw_uart_receive_byte(due_sw_uart *uart, char* data) {
   char parity, rx_parity;
   
   // aguarda start bit
-  digitalRead(uart->pin_rx, LOW);
-  _sw_uart_wait_T(uart);
+  boolean checkstartbit = false;
+
   // Confirma start BIT
-  byte startbit =   digitalRead(uart->pin_rx, LOW);
-  // checa se bit ainda é 0
-    if(startbit == 0) {
-    digitalWrite(uart -> pin_rx, parity);
-    _sw_uart_wait_T(uart);
-  }
+  while(digitalRead(uart->pin_rx)){}
+    _sw_uart_wait_half_T(uart);
+    
+    // checa se bit ainda é 0
+    if(digitalRead(uart->pin_rx) == 0){
+       checkstartbit == true;
+    }
+    else{
+      return(SW_UART_ERROR_FRAMING);
+    }
+   
+_sw_uart_wait_T(uart);
+
   // recebe dados
-  for(int i = 0; i < uart->databits; i++) {
-    digitalRead(uart->pin_rx, data >> i & 0x01);
+  for(int i = 0; i <= 7; i++) {
+    nchar = nchar|(digitalRead(uart->pin_rx) << i);
     _sw_uart_wait_T(uart);
   }
   // recebe paridade
-  if(uart->paritybit != SW_UART_NO_PARITY) {
-    digitalRead(uart -> pin_rx, parity);
+    rx_parity = digitalRead(uart->pin_rx);
     _sw_uart_wait_T(uart);
-  }
-  // recebe stop bit
-    for(int i = 0; i < uart->stopbits; i++) {
-    digitalRead(uart->pin_rx, HIGH);
-    _sw_uart_wait_T(uart);
-  } 
-}
+  
+  // recebe stop bit 
+  int stopbit = digitalRead(uart->pin_rx);
+  
   // checa paridade
+  parity = calc_even_parity(nchar);
+  
   if(parity != rx_parity) {
     return SW_UART_ERROR_PARITY;
   }
