@@ -10,6 +10,7 @@ void sw_uart_setup(due_sw_uart *uart, int rx, int tx, int stopbits, int databits
   pinMode(rx, INPUT);
   pinMode(tx, OUTPUT);
   digitalWrite(tx, HIGH);
+  digitalRead(rx, HIGH);
 }
 
 void sw_uart_write_data(due_sw_uart *uart, char* bufferData, int writeN) {
