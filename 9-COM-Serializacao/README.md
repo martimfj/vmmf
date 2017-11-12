@@ -1,68 +1,24 @@
----
-title: Camada Física -  APS 9 - Serialização/Desserialização 
-author: Rafael Corsi - rafael.corsi@insper.edu.br
-date: Outubro - 2017
----
+# APS 9 : Serialização/Desserialização - Martim Ferreira e Vitória Camilo 
 
-![Interface entre módulos](./doc/projeto.png){width=50%}
+## Comunicação UART
+UART é um tipo de hardware que se comunica de forma assíncrona, serializando os dados. No frame, é enviado um bit HIGH (ou 1) de maneira constante até que a transmissão de dados comece. Quando a transmissão se inicia, é mandado um bit LOW (ou 0), representando o Start Bit, o começo da transmissão. Depois disso, é enviado todo o payload. No final são enviados os Stop Bits, que indicam que a transmissão chegou ao fim.
 
-# APS 9 : Serialização/Desserialização 
+## Onda gerada pela implementação (no analog discovery)
+![Onda gerada](./doc/onda.png)
 
-O objetivo principal desse projeto é o do entendimento de como uma mensagem é serializada e desserializada nos níveis mais baixos de uma comunicação.
+## Explicação do código
+#### Arquivos:
+- .ino: Representa a camada físca, onde ocorre a intereção com o Hardware por meio da linguagem C++
+- .cpp: Representa a camada Enlace, é onde estão as funções e a lógica
+- .h: Importam as bibliotecas Arduino
 
-# Projeto
+#### TX (Transmissor)
+- .ino: É o código carregado no Arduino, que importa a biblioteca (sw_uart.h) e inicializa a serialização, dando como parâmetros a velocidade, os pinos do Arduino que os Jumpers estão conectados e o texto a ser transmitido.
 
-Implementar a serialização/desserialização de um protocolo de comunicação (sugerimos o UART) em um arduino Due via software. 
+- .cpp: É responsável pela lógica da comunicação UART. As funções realizam os processos necessários para que a comunicação seja realizada, enquanto o .ino apenas chama essas funções. Dentro deste código, está função que realiza cálculo da paridade ímpar (*calc_even_parity*), recebendo o payload, ela realiza a contagem de cada bit e soma todos os bits 1. Ao final da leitura, se a soma não tem resto quando dividida por 2, a paridade está correta, então ela retorna que o payload não está corrompido (com erro). Outra função presente é a *sw_uart_write_byte*, que escreve o byte que representa o char presente na String sendo enviada, está função basicamente escreve o startbit, o payload (byte do char), parity bit e stopbit.
 
-## Pré requisitos: 
+#### RX (Recepção)
+- .ino: É o código carregado no Arduino, que importa a biblioteca (sw_uart.h) e inicializa a serialização, dando como parâmetros a velocidade, os pinos do Arduino que os Jumpers estão conectados e os erros que podem ocorrer na transmissão (Erro de paridade ou outros).
 
-- Arduino Due
-- Arduino IDE (> 1.8)
-     - https://www.arduino.cc/en/Main/Software
-- Digilent WaveForms 2015 (> 3.6.8)
-     - http://store.digilentinc.com/waveforms-2015-download-only/
- 
-## Entendendo o protocolo 
-
-O roteiro a seguir pretende guiar para o uso do analog discovery para análise de protocolos e também para o entendimento do protocolo UART. 
-
-- [Roteiro 1 : Analisando o protocolo UART](https://github.com/Insper/Camada-Fisica-Computacao/tree/master/3-Projetos/9-COM-Serializacao/Roteiros/1-Analise-Protocolo)
-- [Roteiro 2 : Recebendo dados via uart](https://github.com/Insper/Camada-Fisica-Computacao/tree/master/3-Projetos/9-COM-Serializacao/Roteiros/2-Recebendo-Dados)
-- [Roteiro 3 : Implementando o TX](https://github.com/Insper/Camada-Fisica-Computacao/tree/master/3-Projetos/9-COM-Serializacao/Roteiros/3-Implementando-TX)
-- [Roteiro 4 : Implementando o RX](https://github.com/Insper/Camada-Fisica-Computacao/tree/master/3-Projetos/9-COM-Serializacao/Roteiros/4-Implementando-RX)
-
-## Requisitos 
-1. Transmissor
-     - serializar dados via uart embarcado no arduino
-     
-2. Receptor
-     - desserializar dados via uart embarcado no arduino
-          
-3. Documentação
-     - Explicar a comunicação UART
-     - Exibir a forma de onda gerada pela implementação (usando o analog discovery)
-     - Explicar o código
-
-## Itens extras
-
-- Implementar um protocolo próprio de transmissão e recepção de dados.
-
-## Validação
-
-- Em sala de aula, abrir as duas aplicações em computadores distintos e transmitir uma frase entre eles via o pipeline desenvolvido anteriormente.
-
-## Rubricas
-
-| Nota | Descritivo                                                |
-|------|-----------------------------------------------------------|
-| A    | - Entregue no prazo                                       |
-|      | - Implementado um item do extras                          |
-| B    | - Entregue no prazo                                       |
-|      | - Implementado requisitos necessários                     |
-| C    | - Entregue fora do prazo                                  |
-|      | - Implementando requisitos necessários                    |
-| D    | - Nem todos os requisitos necessários foram implementados |
-| I    | - Não entregue                                            |
-
-
+- .cpp: É responsável pela lógica da comunicação UART. As funções realizam os processos necessários para que a comunicação seja realizada, enquanto o .ino apenas chama essas funções. Dentro deste código, está função que realiza cálculo da paridade ímpar (*calc_even_parity*), recebendo o payload, ela realiza a contagem de cada bit e soma todos os bits 1. Ao final da leitura, se a soma não tem resto quando dividida por 2, a paridade está correta, então ela retorna que o payload não está corrompido (com erro). Outra função presente é a *sw_uart_receive_byte*, que recebe o byte transmitido que representa o char, realiza a desserialização dos bits recebidos e checa a paridade por meio da função citada anteriormente e retornando o dado.
 
